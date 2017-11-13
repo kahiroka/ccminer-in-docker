@@ -7,5 +7,5 @@ RUN apt-get -y update
 RUN apt-get -y install git automake libssl-dev libcurl4-openssl-dev
 
 USER miner
-RUN cd && git clone https://github.com/tpruvot/ccminer.git
+RUN cd && git clone https://github.com/tpruvot/ccminer.git && cd ~/ccminer && git checkout cuda-9 
 RUN cd ~/ccminer && ./autogen.sh && ./configure && make
