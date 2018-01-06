@@ -13,6 +13,7 @@ https://github.com/NVIDIA/nvidia-docker
     $ cd ccminer-in-docker
     $ docker build -t ccminer/docker .
     $ nvidia-docker run -d \
+          --name=ccminer \
           -e ALGO=<algorithm> \
           -e MINING_POOL=<MINING_POOL_WITH_PORT> \
           -e USER_NAME=<USERNAME/WORKERNAME> \
@@ -20,8 +21,15 @@ https://github.com/NVIDIA/nvidia-docker
           -v /etc/localtime:/etc/localtime:ro \
           ccminer/docker 
 
-# Test
+You can check the output of ccminer with:
 
-You should see your GPUs' status.
+    $ docker logs -f ccminer
 
-    $ nvidia-smi
+If there is no problem, you can stop/start this container as below.
+
+    $ docker stop ccminer
+    $ docker start ccminer
+
+You need to remove/rename the container when you rebuild and run it with the same name.
+
+    $ docker rm ccminer
